@@ -1,0 +1,52 @@
+/* --- src/styles/mobile.css --- */
+
+/* Regra Mestra: Só aplica se a tela for menor que 768px (Tablets e Celulares) */
+@media (max-width: 768px) {
+
+  /* 1. O MENU: Transforma em uma grade 2x2 */
+  .cyber-nav {
+    flex-wrap: wrap;       /* Permite cair para a linha de baixo */
+    padding: 10px 5px;     /* Menos espaço nas bordas */
+    gap: 8px;              /* Espacinho entre os botões */
+    justify-content: center;
+  }
+
+  .nav-btn {
+    font-size: 0.7rem;     /* Letra menor para caber */
+    padding: 10px 5px;     /* Botão mais gordinho para o dedo acertar */
+    width: 45%;            /* Quase metade da tela (caberão 2 lado a lado) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;    /* Texto centralizado */
+    height: 50px;          /* Altura fixa para ficarem iguais */
+  }
+
+  /* 2. O CONTEÚDO: Empurra para baixo para não ficar atrás do menu */
+  .content-area {
+    padding-top: 160px;    /* Espaço extra no topo */
+  }
+
+  /* 3. LISTAS (Habilidades): Arruma o texto torto */
+  .academic-list, .skills-grid, ul {
+    text-align: left;      /* Alinha o texto à esquerda */
+    padding-left: 20px;    /* Dá espaço para a bolinha */
+    max-width: 90%;        /* Não deixa encostar na borda da tela */
+    margin: 0 auto;        /* Centraliza o bloco */
+  }
+  
+  li {
+    margin-bottom: 5px;
+  }
+
+  /* 4. FOTO: Diminui um pouco para sobrar espaço */
+  .photo-frame {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .photo-frame img {
+    width: 100px;
+    height: 100px;
+  }
+}

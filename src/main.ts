@@ -1,4 +1,6 @@
-import '/style.css' // Importa o CSS
+// Importando os estilos organizados
+import './styles/style.css'   // O estilo principal (agora na pasta styles)
+import './styles/mobile.css'  // As correções de celular
 import { setupNavigation } from './navigation' // Importa a lógica dos botões
 import { DNAAnimation } from './animations/background.ts' // Importa o DNA (se já tiver criado o arquivo)
 
@@ -9,7 +11,6 @@ const appContent = document.getElementById('app');
 
 // Inicia o fundo animado de DNA imediatamente
 // (Só vai funcionar se você já tiver colado o código no background.ts)
-new DNAAnimation(); 
 
 function iniciarSistema() {
   if (!loaderScreen || !appContent) return;
