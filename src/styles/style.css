@@ -338,15 +338,23 @@ canvas#dna-bg {
 
 /* --- O EFEITO ZOOM AO PASSAR O MOUSE --- */
 .cert-thumb:hover img {
-  transform: scale(3.5); /* Aumenta 3.5x o tamanho original */
-  z-index: 100; /* Garante que fique POR CIMA de tudo */
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 15px rgb(52, 109, 126); /* Sombra escura atrás + brilho verde */
-  border: 2px solid rgb(52, 109, 126);
+  /* 1. Tira a imagem do lugar dela e joga na tela cheia */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* Centraliza perfeitamente */
+  transform: translate(-50%, -50%);
+  
+  /* 2. REGRAS DE OURO: Ocupe o máximo possível sem sair da tela */
+  max-width: 95vw;  /* 95% da largura da tela */
+  max-height: 95vh; /* 95% da altura da tela */
+  width: auto;      /* Mantém a proporção (não estica) */
+  height: auto;     
+  
+  /* 3. Visual */
+  z-index: 9999; /* Fica em cima de tudo */
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.9); /* Escurece tudo atrás */
+  border: 2px solid #00ffff; /* Borda Ciano para destacar */
+  object-fit: contain; /* Garante que a imagem apareça inteira */
 }
 
-/* Ajuste para não quebrar no celular */
-@media (max-width: 768px) {
-  .cert-thumb:hover img {
-    transform: scale(2); /* Zoom menor no celular para não sair da tela */
-  }
-}

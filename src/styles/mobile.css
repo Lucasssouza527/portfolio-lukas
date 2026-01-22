@@ -24,7 +24,10 @@
 
   /* 2. O CONTEÚDO: Empurra para baixo para não ficar atrás do menu */
   .content-area {
-    padding-top: 160px;    /* Espaço extra no topo */
+    padding-top: 160px;
+    /* ADICIONE ESTAS DUAS LINHAS: */
+    padding-bottom: 150px; /* Muito espaço extra no final para nada cortar */
+    overflow-x: hidden;    /* Evita barra de rolagem horizontal indesejada */
   }
 
   /* 3. LISTAS (Habilidades): Arruma o texto torto */
