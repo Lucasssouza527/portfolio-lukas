@@ -358,3 +358,25 @@ canvas#dna-bg {
   object-fit: contain; /* Garante que a imagem apareça inteira */
 }
 
+/* --- ALINHAMENTO DAS HABILIDADES --- */
+.skills-grid {
+  display: inline-block; /* Faz a caixa se ajustar ao tamanho do texto */
+  text-align: left;      /* Alinha o texto à esquerda */
+  margin-top: 20px;
+  max-width: 600px;      /* Limita a largura para não ficar muito espalhado */
+  padding: 20px;
+  
+}
+
+/* Garante que os itens da lista tenham bolinhas bonitas */
+.skills-grid ul {
+  padding-left: 20px;
+  list-style-type: square; /* Bolinhas quadradas estilo terminal */
+  color: #00ffff; /* Bolinhas ciano */
+}
+
+.skills-grid li {
+  color: #fff;     /* Texto branco */
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
