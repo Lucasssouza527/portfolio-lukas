@@ -52,7 +52,7 @@ export class DNAAnimation {
     this.ctx.clearRect(0, 0, this.width, this.height);
     
     this.particles.forEach((p, index) => {
-      p.update(this.mouse, this.width, this.height); // Passamos width/height para rebater na parede
+      p.update(this.mouse, this.width, this.height); // width/height para rebater na parede
       p.draw(this.ctx);
       
       // Desenha as linhas de conexão
@@ -93,7 +93,7 @@ class Particle {
     this.x = Math.random() * w;
     this.y = Math.random() * h;
     
-    // Devolvemos a velocidade aleatória para elas se mexerem sozinhas
+    // velocidade aleatória para elas se mexerem sozinhas
     this.vx = (Math.random() - 0.5) * 1.5; 
     this.vy = (Math.random() - 0.5) * 1.5; 
     
