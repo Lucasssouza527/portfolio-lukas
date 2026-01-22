@@ -9,8 +9,8 @@ body {
   background-color: oklab(27.011000000000003% -0.02553 -0.03021); /* Fundo quase preto */
   color: #ffffff;
   font-family: 'Courier New', Courier, monospace; /* Fonte estilo terminal */
-  height: 100vh;
-  overflow: hidden; /* Evita barras de rolagem */
+  min-height: 100vh;
+  overflow-x: hidden; /* Evita barras de rolagem */
 }
 
 /* Estilo da Tela de Carregamento */
@@ -59,11 +59,11 @@ body {
 }
 /* --- NAVEGAÇÃO --- */
 header {
-  position: absolute;
+  position: fixed; /* Fixa o menu na tela enquanto rola */
   top: 0;
   width: 100%;
   padding: 20px;
-  z-index: 10;
+  z-index: 999; /* Garante que fique acima de tudo (exceto do zoom do certificado) */
 }
 
 .cyber-nav {
