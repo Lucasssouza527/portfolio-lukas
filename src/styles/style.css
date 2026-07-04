@@ -1,0 +1,428 @@
+/* Reset básico para tirar margens do navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: oklab(27.011000000000003% -0.02553 -0.03021); /* Fundo quase preto */
+  color: #ffffff;
+  font-family: 'Courier New', Courier, monospace; /* Fonte estilo terminal */
+  min-height: 100vh;
+  overflow-x: hidden; /* Evita barras de rolagem */
+}
+
+/* Estilo da Tela de Carregamento */
+#loader-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Garante que fique em cima de tudo */
+  transition: opacity 1s ease-out; /* Suaviza o desaparecimento */
+}
+
+/* O Texto Neon */
+.neon-text {
+  font-size: 2.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(52, 109, 126); /* Verde Hacker */
+  text-shadow: 0 0 10px rgb(52, 109, 126), 0 0 20px rgb(52, 109, 126); /* Brilho Neon */
+  
+  /* A mágica da animação */
+  animation: piscar 1.3s infinite; 
+}
+
+/* Animação de Piscar (Ascende e Apaga) */
+@keyframes piscar {
+  0% { opacity: 0.1; }
+  50% { opacity: 1; }
+  100% { opacity: 0.1; }
+}
+
+/* Classe utilitária para esconder elementos */
+.hidden {
+  display: none;
+}
+
+/* Classe para quando o loader terminar (fade out) */
+.fade-out {
+  opacity: 0;
+  pointer-events: none; /* Permite clicar no que está atrás */
+}
+/* --- NAVEGAÇÃO --- */
+header {
+  position: fixed; /* Fixa o menu na tela enquanto rola */
+  top: 0;
+  width: 100%;
+  padding: 20px;
+  z-index: 999; /* Garante que fique acima de tudo (exceto do zoom do certificado) */
+}
+
+.cyber-nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  background: rgba(15, 42, 54); /* Fundo semi-transparente */
+  padding: 15px;
+  border-bottom: 2px solid rgb(52, 109, 126);
+  backdrop-filter: blur(5px);
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid rgb(52, 109, 126);
+  color: rgb(248, 249, 250);
+  padding: 10px 20px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  background: rgb(52, 109, 126);
+  color: #000;
+  box-shadow: 0 0 15px rgb(52, 109, 126); /* Brilho ao passar o mouse */
+}
+
+/* --- ÁREA DE CONTEÚDO --- */
+.content-area {
+  padding-top: 100px; /* Espaço para não ficar baixo do menu */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.page-section {
+  max-width: 800px;
+  animation: slideIn 0.5s ease-out;
+}
+
+/* --- NOVA FOTO DE PERFIL TECH --- */
+.photo-frame {
+  position: relative; /* Necessário para posicionar a borda */
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* A imagem em si (Fica parada) */
+.photo-frame img {
+  width: 140px; /* Um pouco menor que o frame para dar espaço à borda */
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  z-index: 2; /* Fica na frente */
+}
+
+/* A Borda Giratória (Pseudo-elemento) */
+.photo-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  
+  /* Borda com cor apenas em cima e embaixo para dar efeito legal */
+  border-top: 2px solid #00ffff; 
+  border-bottom: 2px solid #00ffff; 
+  
+  /* Efeito de brilho */
+  box-shadow: 0 0 10px #00ffff;
+  
+  z-index: 1; /* Fica atrás da foto */
+  animation: girar 4s linear infinite; /* Gira mais rápido agora */
+}
+
+/* Segunda borda girando ao contrário (Detalhe extra) */
+.photo-frame::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  border-radius: 50%;
+  border: 2px dashed #bf00ff; /* Roxo tracejado */
+  animation: girar-reverso 10s linear infinite;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes girar-reverso {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+/* Animação suave ao trocar de aba */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+/* --- FUNDO ANIMADO (DNA) --- */
+canvas#dna-bg {
+  position: fixed; /* Fixa na tela */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Joga para trás do texto */
+  pointer-events: none; /* Deixa você clicar nos botões através dele */
+}
+
+/* --- ESTILO DO RESUMO (DATA BLOCKS) --- */
+.resume-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinha tudo no topo */
+  gap: 0; /* O espaçamento será feito pelo padding */
+  margin-top: 30px;
+  flex-wrap: wrap; /* Permite quebrar linha em celular */
+}
+
+.resume-item {
+  flex: 1; /* Todos têm o mesmo tamanho */
+  padding: 20px;
+  border-right: 2px solid rgba(0, 255, 0, 0.3); /* A barra | suave */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito elástico */
+  cursor: default;
+  min-width: 200px; /* Tamanho mínimo para não esmagar */
+}
+
+/* Tira a borda do último item para não sobrar uma barra no final */
+.resume-item.no-border {
+  border-right: none;
+}
+
+.resume-item h3 {
+  color: #00ffff; /* Título em Ciano */
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.resume-item ul {
+  list-style: none; /* Tira as bolinhas padrão */
+  text-align: left;
+  padding-left: 10px;
+}
+
+.resume-item li {
+  margin-bottom: 8px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* --- EFEITO HOVER (ZOOM) --- */
+.resume-item:hover {
+  transform: scale(1.15); /* Aumenta 15% */
+  background: rgba(0, 20, 0, 0.6); /* Fundo levemente escuro */
+  border-right-color: #0f0; /* Barra fica verde brilhante */
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.1); /* Brilho atrás */
+  z-index: 10; /* Garante que fique por cima dos outros */
+}
+
+/* AJUSTE PARA CELULAR (Responsivo) */
+@media (max-width: 768px) {
+  .resume-grid {
+    flex-direction: column; /* Um embaixo do outro */
+  }
+  
+  .resume-item {
+    width: 100%;
+    border-right: none; /* Tira a barra lateral */
+    border-bottom: 1px solid rgba(0, 255, 0, 0.3); /* Põe barra embaixo */
+  }
+  
+  .resume-item.no-border {
+    border-bottom: none;
+  }
+}
+/* --- ESTILO DA FORMAÇÃO --- */
+.academic-list {
+  list-style: none;
+  border-left: 3px solid rgb(52, 109, 126);
+  padding-left: 20px;
+  margin: 20px auto 40px; /* Margem embaixo para separar dos certificados */
+  text-align: left;
+  max-width: 600px;
+}
+
+.academic-list li {
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.academic-list .date {
+  display: block;
+  font-size: 0.9rem;
+  color: rgb(255, 255, 255);
+  margin-top: 5px;
+}
+
+/* --- GALERIA DE CERTIFICADOS --- */
+.cert-title {
+  margin-top: 40px;
+  border-top: 1px solid rgba(0, 255, 0, 0.2);
+  padding-top: 20px;
+  color: #00ffff; /* Ciano para diferenciar */
+}
+
+.cert-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Permite cair para a linha de baixo se tiver muitos */
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.cert-item {
+  width: 150px; /* Tamanho da caixinha */
+  text-align: center;
+}
+
+.cert-item p {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* O COMPUTADOR DO CERTIFICADO (A MOLDURA) */
+.cert-thumb {
+  width: 100%;
+  height: 100px;
+  border: 1px solid rgb(15, 15, 15);
+  overflow: visible; /* Importante para o zoom sair da caixa */
+  position: relative;
+  cursor: pointer;
+  background: #000;
+  transition: all 0.3s ease;
+}
+
+/* A IMAGEM DENTRO DELE */
+.cert-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta a imagem sem esticar */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- O EFEITO ZOOM AO PASSAR O MOUSE --- */
+.cert-thumb:hover img {
+  /* 1. Tira a imagem do lugar dela e joga na tela cheia */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* Centraliza perfeitamente */
+  transform: translate(-50%, -50%);
+  
+  /* 2. REGRAS DE OURO: Ocupe o máximo possível sem sair da tela */
+  max-width: 95vw;  /* 95% da largura da tela */
+  max-height: 95vh; /* 95% da altura da tela */
+  width: auto;      /* Mantém a proporção (não estica) */
+  height: auto;     
+  
+  /* 3. Visual */
+  z-index: 9999; /* Fica em cima de tudo */
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.9); /* Escurece tudo atrás */
+  border: 2px solid #00ffff; /* Borda Ciano para destacar */
+  object-fit: contain; /* Garante que a imagem apareça inteira */
+}
+
+/* --- ALINHAMENTO DAS HABILIDADES --- */
+.skills-grid {
+  display: inline-block; /* Faz a caixa se ajustar ao tamanho do texto */
+  text-align: left;      /* Alinha o texto à esquerda */
+  margin-top: 20px;
+  max-width: 600px;      /* Limita a largura para não ficar muito espalhado */
+  padding: 20px;
+  
+}
+
+/* Garante que os itens da lista tenham bolinhas bonitas */
+.skills-grid ul {
+  padding-left: 20px;
+  list-style-type: square; /* Bolinhas quadradas estilo terminal */
+  color: #00ffff; /* Bolinhas ciano */
+}
+
+.skills-grid li {
+  color: #fff;     /* Texto branco */
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+/* --- REDES SOCIAIS NEON --- */
+.social-links {
+  margin-top: 30px; /* Espaço para separar do texto */
+  display: flex;
+  justify-content: center;
+  gap: 25px; /* Espaço entre os ícones */
+  animation: slideIn 1s ease-out; /* Entra suave junto com o texto */
+}
+
+.social-btn {
+  color: #00ffff; /* Cor Ciano padrão */
+  font-size: 2rem; /* Tamanho do ícone */
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Bolinha opcional */
+  border: 1px solid transparent; /* Borda invisível */
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+.social-btn:hover {
+  color: rgb(52, 109, 126); /* Vira Verde Hacker */
+  text-shadow: 0 0 15px rgb(52, 109, 126), 0 0 30px rgb(52, 109, 126); /* Brilho Neon forte */
+  transform: scale(1.2) rotate(10deg); /* Aumenta e gira um pouquinho */
+  border-color: #0f0; /* Borda aparece */
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5) inset; /* Brilho interno */
+  background: rgba(0, 20, 0, 0.8);
+}
+/* INÍCIO: Estilo e Posicionamento do Contador */
+.contador-visitas {
+  position: fixed; /* Fixa o elemento na tela, mesmo se o usuário rolar a página */
+  bottom: 15px;    /* Mantém 15 pixels de distância da borda inferior */
+  right: 15px;     /* Mantém 15 pixels de distância da borda direita */
+  z-index: 9999;   /* Garante que fique na camada mais alta, por cima do fundo cibernético */
+  opacity: 0.6;    /* Deixa 40% transparente para ser bem discreto */
+  transition: opacity 0.3s ease; /* Efeito suave de transição */
+}
+
+/* Quando o usuário passar o mouse por cima, o contador acende e fica 100% visível */
+.contador-visitas:hover {
+  opacity: 1;
+}
