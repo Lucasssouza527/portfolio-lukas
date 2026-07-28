@@ -15,6 +15,6 @@ GitHub:
 https://github.com/Lucasssouza527
 
 Portfolio: 
-(https://lucasssouza527.github.io/portfolio-lukas/)
+https://lucasssouza527.github.io/portfolio-lukas/
 
 --
