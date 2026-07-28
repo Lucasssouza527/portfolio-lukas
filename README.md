@@ -8,13 +8,13 @@ Meu portfólio profissional desenvolvido para apresentar projetos, habilidades e
 
 Estudante de Defesa Cibernética e profissional de Tecnologia.
 
+Portfolio: 
+https://lucasssouza527.github.io/portfolio-lukas/
+
 LinkedIn:
 https://www.linkedin.com/in/lucas-souza-1170a6263/
 
 GitHub:
 https://github.com/Lucasssouza527
-
-Portfolio: 
-https://lucasssouza527.github.io/portfolio-lukas/
 
 --
